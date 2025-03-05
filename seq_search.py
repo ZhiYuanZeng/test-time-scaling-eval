@@ -103,7 +103,7 @@ def search(arguments, epoch):
 
 
 def search_for_test(args):
-    tokenizer = AutoTokenizer.from_pretrained("/cpfs01/shared/llm_ddd/puyu_transfer_data/guohonglin/hf_hub/models--Qwen--qwq-32B")
+    tokenizer = AutoTokenizer.from_pretrained(args.tokenizer_path)
     data = []
     with open(args.input_file, 'r') as f:
         for l in f:
@@ -318,6 +318,7 @@ if __name__ == '__main__':
     parser.add_argument("--epoch", type=int, default=1)
     parser.add_argument("--resume", action='store_true')
     parser.add_argument("--model_class", type=str,  default=None)
+    parser.add_argument("--tokenizer_path", type=str, default=None)
 
     args = add_common_sglang_args_and_parse(parser)
     try:

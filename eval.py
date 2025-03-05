@@ -204,7 +204,7 @@ def count_correct_solutions(solutions, ref_answers, eval_func, tokenizer):
 def main(args):
     input_file = args.input_file
     eval_func = loose_equal if args.eval_func == 'loose' else is_equiv
-    tokenizer = AutoTokenizer.from_pretrained("/cpfs01/shared/llm_ddd/puyu_transfer_data/guohonglin/hf_hub/models--Qwen--qwq-32B")
+    tokenizer = AutoTokenizer.from_pretrained(args.tokenizer_path)
     with open(input_file, 'r') as f:
         data = [json.loads(l) for l in f]
         print('number of examples: ', len(data))
@@ -273,5 +273,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--input_file", type=str, default=None)
     parser.add_argument("--eval_func", type=str, choices=['opencompass', 'loose'], default='loose')
+    parser.add_argument("--tokenizer_path", type=str, default='loose')
+
     args = parser.parse_args()
     main(args)
